@@ -10,8 +10,7 @@ logger = logging.getLogger(__name__)
 TierScores = Dict[str, float]
 
 EMBED_BASE_URL = "https://generativelanguage.googleapis.com/v1beta/models"
-EMBED_MODEL = "text-embedding-004"
-EMBED_DIMENSION = 768
+EMBED_MODEL = "gemini-embedding-001"
 EMBED_RETRIES = 3
 
 _TIER_ORDER = ("SCRATCH", "SESSION", "LONGTERM")
@@ -84,7 +83,6 @@ def _embed(text: str) -> list[float]:
     body = {
         "model": f"models/{EMBED_MODEL}",
         "content": {"parts": [{"text": text}]},
-        "outputDimensionality": EMBED_DIMENSION,
     }
 
     last_exc: Exception | None = None
